@@ -5,6 +5,8 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
+    "garden>=1.0.0b1",
     "kivy>=2.3.1",
-    "pygame-ce>=2.5.5",
+    "kivy-garden>=0.1.5",
+    "mapview>=1.0.6",
 ]
