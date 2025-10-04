@@ -1,0 +1,83 @@
+#:kivy 2.3.1
+
+<BottomDock@BoxLayout>:
+    size_hint_y: None
+    height: dp(50)
+    spacing: dp(10)
+    padding: dp(10), 0, dp(10), 0
+    canvas.before:
+        Color:
+            rgba: (0.1, 0.1, 0.1, 1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    Button:
+        text: "Account"
+        on_release: app.root.current = "account"
+    Button:
+        text: "Map"
+        on_release: app.root.current = "user"
+    Button:
+        text: "Broadcast"
+        on_release: app.root.current = "broadcast"
+
+<UserScreen>:
+    name: "user"
+    mapview: mapview
+    BoxLayout:
+        orientation: "vertical"
+
+        MapView:
+            id: mapview
+            zoom: 14
+            lat: 0
+            lon: 0
+
+        Label:
+            id: broadcast_label
+            size_hint_y: None
+            height: dp(30)
+            text: "Broadcast Message Here"
+            color: (1, 0, 0, 1)
+
+        BottomDock:
+
+<DriverScreen>:
+    name: "driver"
+    BoxLayout:
+        orientation: "vertical"
+        Label:
+            text: "Driver Screen - location sending enabled"
+        Button:
+            text: "Simulate Broadcast Delay"
+            on_release: root.send_broadcast("Delay due to traffic")
+
+<AccountScreen>:
+    name: "account"
+    Label:
+        text: "User Account Screen (Placeholder)"
+
+<BroadcastScreen>:
+    name: "broadcast"
+    Label:
+        text: "Broadcast Screen (Placeholder)"
+
+ScreenManager:
+    id: screen_manager
+    UserScreen:
+        id: user_screen
+    DriverScreen:
+        id: driver_screen
+    AccountScreen:
+        id: account_screen
+    BroadcastScreen:
+        id: broadcast_screen
+
+BoxLayout:
+    orientation: "vertical"
+
+    ScreenManager:
+        id: screen_manager
+
+    BottomDock:
